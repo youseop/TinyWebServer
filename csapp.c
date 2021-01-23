@@ -544,7 +544,7 @@ void Fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream)
 /**************************** 
  * Sockets interface wrappers
  ****************************/
-
+//socket 식별자 생성
 int Socket(int domain, int type, int protocol) 
 {
     int rc;
@@ -1060,7 +1060,7 @@ int Open_listenfd(char *port)
     int rc;
 
     if ((rc = open_listenfd(port)) < 0)
-	unix_error("Open_listenfd error");
+	    unix_error("Open_listenfd error");
     return rc;
 }
 
