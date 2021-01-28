@@ -13,9 +13,9 @@ int main(int argc, char **argv){
 
   host = argv[1];
   port = argv[2];
-
+  printf("open_clientfd...\n");
   clientfd = Open_clientfd(host, port);
-
+  printf("get clientfd\n");
   //The rio readinitb function is called once per open descriptor. It associates the descriptor fd with a
   //read buffer of type rio t at address rp.
   //rio_readinitb함수는 한 개의 빈 버퍼를 설정하고, 이 버퍼와 한 개의 오픈한 파일 식별자를 연결한다.

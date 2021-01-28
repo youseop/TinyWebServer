@@ -15,16 +15,25 @@ int main(int argc, char **argv){
   port = argv[2];
 
   clientfd = Open_clientfd(host, port);
-
+  printf("Connected!\n");
   //The rio readinitb function is called once per open descriptor. It associates the descriptor fd with a
   //read buffer of type rio t at address rp.
   //rio_readinitb함수는 한 개의 빈 버퍼를 설정하고, 이 버퍼와 한 개의 오픈한 파일 식별자를 연결한다.
   //865p~
   Rio_readinitb(&rio, clientfd);
   //stdin 으로 입력을 받아서 buf에 저장
+  //Fgets 설명 - https://www.joinc.co.kr/w/man/3/fgets
   while(Fgets(buf, MAXLINE, stdin)!=NULL){
+    if (strlen(buf) == 2){
+      break;
+    }
     Rio_writen(clientfd, buf, strlen(buf));
-    Rio_readlineb(&rio,buf,MAXLINE);
+  }
+
+  
+  printf("start to print!\n");
+  while(Rio_readlineb(&rio,buf,MAXLINE)!=NULL){
+
     Fputs(buf, stdout);
   }
   Close(clientfd);

@@ -968,6 +968,7 @@ int open_clientfd(char *hostname, char *port) {
             continue; /* Socket failed, try the next */
 
         /* Connect to the server */
+        printf("start to connect\n");
         if (connect(clientfd, p->ai_addr, p->ai_addrlen) != -1) 
             break; /* Success */
         if (close(clientfd) < 0) { /* Connect failed, try another */  //line:netp:openclientfd:closefd
